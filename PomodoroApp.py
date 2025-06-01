@@ -1,3 +1,4 @@
+import pytz
 import streamlit as st
 import sqlite3
 import time
@@ -486,10 +487,11 @@ class PomodoroApp:
                     st.session_state.is_paused = False
                     self.show_notification("🔄 Timer resetado!", "info")
                     st.rerun()
-
+        BRAZIL_TZ = pytz.timezone('America/Sao_Paulo')
         with col2:
+
             # Relógio Digital
-            current_time = datetime.now()
+            current_time = datetime.now(BRAZIL_TZ)
             time_str = current_time.strftime("%H:%M:%S")
             date_str = current_time.strftime("%d/%m/%Y")
 
